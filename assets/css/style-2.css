@@ -1,0 +1,16 @@
+/* Image donation */
+.img-donate {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 50px;
+    overflow: hidden; /* Add this line */
+}
+
+.img-donate img {
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 20px;
+}

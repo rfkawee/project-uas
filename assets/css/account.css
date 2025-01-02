@@ -1,0 +1,150 @@
+/* General Styling */
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header Kelengkapan Profil */
+  h5 {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  a {
+    color: #007bff;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Card Styling */
+  .card {
+    background-color: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Avatar */
+  img.rounded-circle {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  
+  /* Statistik Donasi */
+  .row.text-center > .col {
+    border-right: 1px solid #ffffff;
+  }
+  
+  .row.text-center > .col:last-child {
+    border-right: as;
+  }
+  
+  .row.text-center p {
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .row.text-center h6 {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Saldo dan Poin */
+  .card p {
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .card h6 {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* List Group Items */
+  .list-group-item {
+    border: none;
+    padding: 15px 20px;
+    color: #555;
+    font-size: 15px;
+  }
+  
+  .list-group-item:hover {
+    background-color: #f1f1f1;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  /* Footer Navigation */
+  footer {
+    background-color: #ffffff;
+    border-top: 1px solid #e6e6e6;
+  }
+  
+  footer a {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+  }
+  
+  footer a.text-primary {
+    color: #007bff;
+  }
+  
+  footer a:hover {
+    text-decoration: none;
+  }
+
+  /* Loginpage */
+
+    /* Styling umum */
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Card Login */
+  .card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e6e6e6;
+  }
+  
+  .card h5 {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .card p {
+    color: #555;
+    margin-bottom: 0;
+  }
+  
+  .card .form-control {
+    border-radius: 8px;
+    border: 1px solid #e6e6e6;
+    padding: 10px;
+  }
+  
+  .card .btn {
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  .card a {
+    color: #007bff;
+  }
+  
+  .card a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Center content vertically */
+  .min-vh-100 {
+    min-height: 100vh;
+  }
+  
+  
