@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +13,11 @@
 
     <link href="//fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- Template CSS -->
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style-starter.css">
-  </head>
+
+    </head>
 <body>
 
 <header id="site-header" class="fixed-top">
@@ -54,7 +60,21 @@
           </li>
     
         </ul> 
-        <a href="login.php"><button type="button" class="btn btn-success">Login</button></a>
+        
+        <?php if(isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
+            <div class="dropdown">
+                <button class="btn btn-success dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <?= htmlspecialchars($_SESSION['nama']) ?>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="userDropdown" style="background-color: white;">
+                    <li><a class="dropdown-item" href="dashboard_admin.php">Dashboard</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="handler/logout.php">Logout</a></li>
+                </ul>
+            </div>
+        <?php else: ?>
+            <a href="login.php"><button type="button" class="btn btn-success">Login</button></a>
+        <?php endif; ?>
       </div>
      
       
@@ -81,4 +101,11 @@
 <!-- //header -->
   
 </body>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/theme-change.js"></script>
+<script src="assets/js/jquery.waypoints.min.js"></script>
+
 </html>

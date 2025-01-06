@@ -1,3 +1,6 @@
+<?php require './handler/history_donate_campaign.php'?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,9 +21,9 @@
 
 <?php
     require 'header.php';
+    require 'handler/view_donate_page.php';
 ?>
      
-    
     <!-- Navbar -->
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
@@ -29,37 +32,78 @@
       </div>
     </nav>
     <div class="img-donate">
-      <img src="assets/images/blog1.jpg" alt="" class="img-blog1" />
+    <img src="<?= htmlspecialchars($campaign['gambar']) ?>" alt="<?= htmlspecialchars($campaign['judul']) ?>" class="img-blog1" />
     </div>
 
     <!-- Donation Progress Section -->
     <div class="container my-5">
-      <h3>Donasi Terkumpul</h3>
-      <div class="progress mb-4">
-        <div
-          class="progress-bar"
-          role="progressbar"
-          style="width: 70%"
-          aria-valuenow="70"
-          aria-valuemin="0"
-          aria-valuemax="100">
-          70% Funded
+    <h3>Donasi Terkumpul</h3>
+    <div class="progress mb-4">
+        <div class="progress-bar" 
+             role="progressbar" 
+             style="width: <?= round($progress) ?>%" 
+             aria-valuenow="<?= round($progress) ?>" 
+             aria-valuemin="0" 
+             aria-valuemax="100">
+            <?= round($progress) ?>% Funded
         </div>
-      </div>
-      <p>We are so close! Your support is making a big difference.</p>
+    </div>
+    <p>Target: Rp <?= number_format($campaign['target_dana'], 0, ',', '.') ?></p>
+    <p>Terkumpul: Rp <?= number_format($campaign['dana_terkumpul'], 0, ',', '.') ?></p>
+</div>
+
+<!-- Story Section -->
+<div class="container my-5" id="story">
+    <h3><?= htmlspecialchars($campaign['judul']) ?></h3>
+    <p><?= nl2br(htmlspecialchars($campaign['keterangan'])) ?></p>
+    
+    <!-- Button Donate -->
+    <div class="text-center mt-5">
+        <a href="payment.php?id=<?= $campaign_id ?>">
+            <button type="button" class="btn btn-success btn-lg">Donasi Sekarang</button>
+        </a>
     </div>
 
-    <!-- Story Section -->
-    <div class="container my-5" id="story">
-      <h3>The Story</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
-       <!-- Button Donate -->
-    <div class="text-center mt-5">
-      </div>
-      <a href="payment.php"><button type="submit" class="btn btn-success btn-lg">Donasi Sekarang</button>
-      </a></div>
+    <!-- History Donasi -->
+      <div class="container my-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title mb-4">Para Donatur (<?= $total_donasi ?>)</h5>
+                <ul class="list-group list-group-flush">
+                    <?php if ($total_donasi > 0): ?>
+                        <?php while ($row = $donasi->fetch_assoc()): ?>
+                            <?php
+                            // Calculate time difference
+                            $tanggal_donasi = new DateTime($row['tanggal_donasi']);
+                            $now = new DateTime();
+                            $interval = $now->diff($tanggal_donasi);
+                            
+                            if ($interval->d == 0) {
+                                $time_ago = "Hari ini";
+                            } elseif ($interval->d < 7) {
+                                $time_ago = $interval->d . " hari yang lalu";
+                            } else {
+                                $time_ago = floor($interval->d/7) . " minggu yang lalu";
+                            }
+                            ?>
+                            <li class="list-group-item d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <span class="fw-bold text-primary d-block"><?= htmlspecialchars($row['nama_donatur']) ?></span>
+                                    <small class="text-muted"><?= $time_ago ?></small>
+                                </div>
+                                <span class="fw-semibold">Donasi Rp <?= number_format($row['jumlah'], 0, ',', '.') ?></span>
+                            </li>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <li class="list-group-item text-center">Belum ada donasi</li>
+                    <?php endif; ?>
+                </ul>
+                <?php if ($total_donasi > 5): ?>
+                    <button class="btn btn-primary w-100 mt-3">Lihat lebih banyak</button>
+                <?php endif; ?>
+            </div>
+          </div>  
+        </div>
     </div>
 
     

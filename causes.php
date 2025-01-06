@@ -40,153 +40,49 @@ Author URL: http://w3layouts.com
 </div>
 <!-- banner bottom shape -->
 <!--/causes-sec-->
+
+<?php require './handler/view_causes.php'?>
+
 <div class="w3-services py-5">
     <div class="container py-lg-4 py-md-3">
         <div class="row w3-services-grids">
-            <div class="col-lg-4 col-md-6 causes-grid">
-                <div class="causes-grid-info">
-                    <a href="donation_page.php" class="cause-title-wrap">
-                        <p class="title">Medicine </p>
-                        <h4 class="cause-title">Help From Injuries
-                        </h4>
-                        <p class="counter-inherit">
-                            $86,800 Donated of $310,000
-                        </p>
-                    </a>
-                    <div class="barWrapper my-4">
-                        <div class="progress-box">
-                            <div class="progress" data-value="60">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                                    aria-valuemax="100" style="width: 60%;">
-                                    <div class="value-holder"><span class="value"></span></div>
+            <?php if (!empty($campaigns)): ?>
+                <?php foreach ($campaigns as $campaign): ?>
+                    <div class="col-lg-4 col-md-6 causes-grid">
+                        <div class="causes-grid-info">
+                            <a href="donation_page.php?id=<?= $campaign['no']; ?>" class="cause-title-wrap">
+                                <p class="title">Campaign</p>
+                                <h4 class="cause-title"><?= htmlspecialchars($campaign['judul']); ?></h4>
+                                <p class="counter-inherit">
+                                    Rp<?= number_format($campaign['dana_terkumpul'], 0, ',', '.'); ?> Donated of 
+                                    Rp<?= number_format($campaign['target_dana'], 0, ',', '.'); ?>
+                                </p>
+                            </a>
+                            <div class="barWrapper my-4">
+                                <div class="progress-box">
+                                    <?php
+                                    $progress = ($campaign['dana_terkumpul'] / $campaign['target_dana']) * 100;
+                                    ?>
+                                    <div class="progress" data-value="<?= round($progress); ?>">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="<?= round($progress); ?>" 
+                                             aria-valuemin="0" aria-valuemax="100" style="width: <?= round($progress); ?>%;">
+                                            <div class="value-holder"><span class="value"><?= round($progress); ?>%</span></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <a href="donation_page.php?id=<?= $campaign['no']; ?>">
+                                <img src="<?= htmlspecialchars($campaign['gambar']); ?>" class="img-fuild radius-image-full" alt="">
+                            </a>
                         </div>
                     </div>
-                    <a href="#cause"><img src="assets/images/blog1.jpg" class="img-fuild radius-image-full"
-                            alt=""></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 causes-grid">
-                <div class="causes-grid-info">
-                    <a href="#cause" class="cause-title-wrap">
-                        <p class="title">Homeless </p>
-                        <h4 class="cause-title">Clean Water for all
-                        </h4>
-                        <p class="counter-inherit">
-                            $86,800 Donated of $310,000
-                        </p>
-                    </a>
-                    <div class="barWrapper my-4">
-                        <div class="progress-box">
-                            <div class="progress" data-value="70">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0"
-                                    aria-valuemax="100" style="width: 80%;">
-                                    <div class="value-holder"><span class="value"></span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#cause"><img src="assets/images/blog2.jpg" class="img-fuild radius-image-full" alt=""></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 causes-grid">
-                <div class="causes-grid-info">
-                    <a href="#cause" class="cause-title-wrap">
-                        <p class="title">Education </p>
-                        <h4 class="cause-title">Education for all
-                        </h4>
-                        <p class="counter-inherit">
-                            $86,800 Donated of $310,000
-                        </p>
-                    </a>
-                    <div class="barWrapper my-4">
-                        <div class="progress-box">
-                            <div class="progress" data-value="70">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
-                                    aria-valuemax="100" style="width: 70%;">
-                                    <div class="value-holder"><span class="value"></span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#cause"><img src="assets/images/blog3.jpg" class="img-fuild radius-image-full" alt=""></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 causes-grid">
-                <div class="causes-grid-info">
-                    <a href="#cause" class="cause-title-wrap">
-                        <p class="title">Food </p>
-                        <h4 class="cause-title">Food for Hungry
-                        </h4>
-                        <p class="counter-inherit">
-                            $86,800 Donated of $310,000
-                        </p>
-                    </a>
-                    <div class="barWrapper my-4">
-                        <div class="progress-box">
-                            <div class="progress" data-value="60">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                                    aria-valuemax="100" style="width: 60%;">
-                                    <div class="value-holder"><span class="value"></span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#cause"><img src="assets/images/blog4.jpg" class="img-fuild radius-image-full" alt=""></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 causes-grid">
-                <div class="causes-grid-info">
-                    <a href="#cause" class="cause-title-wrap">
-                        <p class="title">Shelter </p>
-                        <h4 class="cause-title">Shelter for Homeless
-                        </h4>
-                        <p class="counter-inherit">
-                            $86,800 Donated of $310,000
-                        </p>
-                    </a>
-                    <div class="barWrapper my-4">
-                        <div class="progress-box">
-                            <div class="progress" data-value="70">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0"
-                                    aria-valuemax="100" style="width: 80%;">
-                                    <div class="value-holder"><span class="value"></span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#cause"><img src="assets/images/blog5.jpg" class="img-fuild radius-image-full" alt=""></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 causes-grid">
-                <div class="causes-grid-info">
-                    <a href="#cause" class="cause-title-wrap">
-                        <p class="title">Medicine </p>
-                        <h4 class="cause-title">Help From Injuries
-                        </h4>
-                        <p class="counter-inherit">
-                            $86,800 Donated of $310,000
-                        </p>
-                    </a>
-                    <div class="barWrapper my-4">
-                        <div class="progress-box">
-                            <div class="progress" data-value="70">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
-                                    aria-valuemax="100" style="width: 70%;">
-                                    <div class="value-holder"><span class="value"></span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#cause"><img src="assets/images/blog6.jpg" class="img-fuild radius-image-full" alt=""></a>
-                </div>
-            </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>Tidak ada campaign untuk ditampilkan.</p>
+            <?php endif; ?>
         </div>
     </div>
 </div>
-<!--/causes-sec-->
-
 
 <!-- footer 14 -->
 <div class="w3l-footer-main">
